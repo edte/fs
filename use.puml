@@ -1,0 +1,31 @@
+@startuml
+|用户|
+start
+:用户登录;
+if (磁盘已初始化) then (true)
+:;
+else (false)
+    |磁盘|
+    :建立磁盘;
+    :格式化文件系统;
+    :挂载目录;
+endif
+|用户|
+|用户|
+:进行文件操作;
+if (操作存在) then (true)
+    :找到 runtime 数据;
+    :调用 VFS 中的相关接口;
+    :调用具体文件系统提供的接口;
+else(false)
+:异常报告;
+endif
+if (操作正常?) then (yes)
+:返回结果;
+else(false)
+:异常报告;
+endif
+:结束;
+stop
+
+@enduml

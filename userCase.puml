@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+note right of User1 : 用户
+User0 -> (用户接口) : 登录,磁盘初始化
+User1 --> (用户接口): 文件操作
+
+note right of 用户接口 : 提供用户操作的接口
+(用户接口) ---> (VFS)
+note right of VFS : 虚拟文件系统
+(VFS) ---> (FS)
+note right of FS : 文件系统
+(FS) ---> (Disk)
+note right of (Disk) : 磁盘
+@enduml
